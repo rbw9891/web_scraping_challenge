@@ -18,7 +18,7 @@ def scrape():
     executable_path = {'executable_path': "C:\\Users\\Reid\\.wdm\\drivers\\chromedriver\\win32\\111.0.5563\\chromedriver.exe"}
     print(executable_path)
     # instantiate browser object, will open a new empty browser window
-    browser = Browser('chrome', **executable_path, headless=True)
+    browser = Browser('chrome', **executable_path, headless=False)
 
     # set url to mars news site
     url = "https://redplanetscience.com/"
@@ -70,6 +70,8 @@ def scrape():
 
     # write to html string
     mars.to_html("mars_table.html", encoding="utf-8")
+
+    mars_facts = mars.to_html()
 
     # set url to astrogeology site and visit page
     url = "https://marshemispheres.com/"
@@ -157,6 +159,7 @@ def scrape():
 
     scrape_dict["news_title"] = news_title
     scrape_dict["news_paragraph"] = news_para
+    scrape_dict["facts"] = mars_facts
     scrape_dict["feature_image"] = featured_image_url
     scrape_dict["hemi_images"] = hemisphere_image_urls
 
